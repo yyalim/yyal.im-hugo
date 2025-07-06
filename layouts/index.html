@@ -8,8 +8,7 @@
   <meta name="description" content="Yusuf Yalim's personal website." />
   <title>Yusuf Yalım</title>
   {{ $styles := resources.Get "scss/styles.scss" | toCSS | minify | fingerprint }}
-  <link rel="preload" href="{{ $styles.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{ $styles.RelPermalink }}"></noscript>
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TDV3N3LET5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
