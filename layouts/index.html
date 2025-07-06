@@ -4,8 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yusuf Yalim's personal website." />
+  <meta name="description" content="Yusuf Yalim's personal website." />
   <title>Yusuf Yalım</title>
-  <link rel="stylesheet" href="/scss/styles.css">
+  {{ $styles := resources.Get "scss/styles.scss" | toCSS }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TDV3N3LET5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
