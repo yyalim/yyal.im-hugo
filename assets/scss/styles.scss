@@ -1,0 +1,89 @@
+@import 'normalize';
+@import 'typography';
+@import 'icons';
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--textNormal);
+  padding: 8vmin;
+  font-size: 1.8rem;
+}
+
+a {
+  color: #FFA52C;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: 0.4s ease;
+  background-color: transparent;
+
+  &:hover {
+    color: #ce5971;
+  }
+}
+
+body.dark {
+  --bg: #2c3344;
+  --textNormal: hsla(0,0%,100%,0.88);
+  --textTitle: #fff;
+  --hr: hsla(0,0%,100%,0.88);
+}
+
+#__next {
+  height: 100%;
+}
+
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.introduction {
+  margin: 0;
+  max-width: 880px;
+}
+
+.name {
+  display: block;
+}
+
+.social-links {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0 1vh 1vh 0;
+
+    a {
+      text-indent: -9999px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    a.github {
+      @include icon-github;
+    }
+
+    a.linkedin {
+      @include icon-linkedin;
+    }
+  }
+}
