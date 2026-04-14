@@ -29,6 +29,7 @@
       <span class="name">Yusuf Yalım, </span>
       a software engineer.
     </h1>
+    <canvas id="invader" class="invader" aria-hidden="true"></canvas>
     <ul class="social-links">
       <li>
         <a target="_blank" href="https://www.github.com/yyalim">github.com/yyalim</a>
@@ -38,5 +39,70 @@
       </li>
     </ul>
   </main>
+  <script>
+    (() => {
+      const canvas = document.getElementById('invader');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const COLS = 11, ROWS = 8;
+      const COLORS = ['#C41E1E','#EE6F00','#F39C00','#FCE000','#7CC00A','#009FE3','#7A5BA1','#F77A9C'];
+      const A = [
+        '..X.....X..',
+        '...X...X...',
+        '..XXXXXXX..',
+        '.XX.XXX.XX.',
+        'XXXXXXXXXXX',
+        'X.XXXXXXX.X',
+        'X.X.....X.X',
+        '...XX.XX...',
+      ];
+      const B = [
+        '..X.....X..',
+        'X..X...X..X',
+        'X.XXXXXXX.X',
+        'XXX.XXX.XXX',
+        'XXXXXXXXXXX',
+        '.XXXXXXXXX.',
+        '..X.....X..',
+        '.X.......X.',
+      ];
+      let scale, sprW, sprH, cssW, cssH, frame = 0, lastStep = 0;
+      function resize() {
+        const dpr = devicePixelRatio || 1;
+        const avail = Math.min(440, canvas.parentElement.clientWidth);
+        scale = Math.max(3, Math.floor(avail / 40));
+        sprW = COLS * scale;
+        sprH = ROWS * scale;
+        cssW = sprW + scale * 4; // room for sway
+        cssH = sprH + scale * 2; // room for bob
+        canvas.width = cssW * dpr;
+        canvas.height = cssH * dpr;
+        canvas.style.width = cssW + 'px';
+        canvas.style.height = cssH + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.imageSmoothingEnabled = false;
+      }
+      function draw(pattern, px, py) {
+        ctx.clearRect(0, 0, cssW, cssH);
+        for (let r = 0; r < ROWS; r++) {
+          ctx.fillStyle = COLORS[r];
+          for (let c = 0; c < COLS; c++) {
+            if (pattern[r][c] === 'X') ctx.fillRect(px + c * scale, py + r * scale, scale, scale);
+          }
+        }
+      }
+      function tick(t) {
+        if (t - lastStep > 450) { frame ^= 1; lastStep = t; }
+        const centerX = (cssW - sprW) / 2;
+        const sway = Math.sin(t / 900) * (scale * 2);
+        const bob = Math.sin(t / 600) * (scale * 0.6);
+        draw(frame ? B : A, Math.round(centerX + sway), Math.round(scale + bob));
+        requestAnimationFrame(tick);
+      }
+      resize();
+      addEventListener('resize', resize);
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
