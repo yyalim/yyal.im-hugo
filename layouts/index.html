@@ -9,12 +9,15 @@
   {{ $styles := resources.Get "scss/styles.scss" | toCSS | minify }}
   <style>{{ $styles.Content | safeCSS }}</style>
   <script>
-    addEventListener('load', () => {
+    const loadGTM = () => {
       const s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TDV3N3LET5';
       document.head.appendChild(s);
-    }, { once: true });
+    };
+    ['pointerdown','keydown','scroll','touchstart'].forEach(evt =>
+      addEventListener(evt, loadGTM, { once: true, passive: true })
+    );
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
