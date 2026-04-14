@@ -135,7 +135,7 @@
         ctx.restore();
       }
       function tick(t) {
-        if (t - lastStep > 450) { frame ^= 1; lastStep = t; }
+        if (t - lastStep > 550) { frame ^= 1; lastStep = t; }
         ctx.clearRect(0, 0, cssW, cssH);
         const centerX = (cssW - sprW) / 2;
         const sway = Math.sin(t / 900) * (scale * 2);
