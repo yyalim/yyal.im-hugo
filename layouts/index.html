@@ -106,28 +106,9 @@
       addEventListener('resize', resize);
       requestAnimationFrame(tick);
 
-      const rows = [
-        '    ██            ██    ',
-        '      ██      ██        ',
-        '    ██████████████      ',
-        '  ████  ██████  ████    ',
-        '██████████████████████  ',
-        '██  ██████████████  ██  ',
-        '██  ██          ██  ██  ',
-        '      ████  ████        ',
-      ];
-      const rowStyle = c => `color:${c};font:bold 13px/1 monospace;text-shadow:0 0 4px ${c}`;
       console.log(
-        '\n%c' + rows.join('\n%c') + '\n\n%c L-l-look at you, hacker...',
-        rowStyle('#C41E1E'),
-        rowStyle('#EE6F00'),
-        rowStyle('#F39C00'),
-        rowStyle('#FCE000'),
-        rowStyle('#7CC00A'),
-        rowStyle('#009FE3'),
-        rowStyle('#7A5BA1'),
-        rowStyle('#F77A9C'),
-        'color:#7CFF6B;font:bold 13px monospace;text-shadow:0 0 4px #7CFF6B'
+        '%c L-l-look at you, hacker... ',
+        'color:#7CFF6B;font:bold 14px monospace;text-shadow:0 0 4px #7CFF6B;padding:4px 0'
       );
       const greetings = [
         '…want a cookie? 🍪',
@@ -144,11 +125,11 @@
       const pick = arr => arr[Math.floor(Math.random() * arr.length)];
       console.log(
         '%c ' + pick(greetings) + '  — love, GOOD SHODAN ',
-        'color:#FFA52C;font:bold 13px monospace;padding:4px 0'
+        'color:#7CFF6B;font:bold 14px monospace;text-shadow:0 0 4px #7CFF6B;padding:4px 0'
       );
       console.log(
         '%c psst… try typing sillyLLM into the console 👀 ',
-        'color:#7CC00A;font:italic 12px monospace'
+        'color:#7CFF6B;font:italic 13px monospace;text-shadow:0 0 4px #7CFF6B'
       );
 
       const keyed = {
