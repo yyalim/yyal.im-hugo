@@ -5,12 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Yusuf Yalim's personal website." />
-  <meta name="description" content="Yusuf Yalim's personal website." />
   <title>Yusuf Yalım</title>
-  {{ $styles := resources.Get "scss/styles.scss" | toCSS | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TDV3N3LET5"></script>
+  {{ $styles := resources.Get "scss/styles.scss" | toCSS | minify }}
+  <style>{{ $styles.Content | safeCSS }}</style>
   <script>
+    addEventListener('load', () => {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TDV3N3LET5';
+      document.head.appendChild(s);
+    }, { once: true });
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -27,14 +31,10 @@
     </h1>
     <ul class="social-links">
       <li>
-        <a class="github" target="_blank" href="https://www.github.com/yyalim">
-          <img src="/icons/github.svg" alt="Github Icon" />
-        </a>
+        <a target="_blank" href="https://www.github.com/yyalim">github.com/yyalim</a>
       </li>
       <li>
-        <a class="linkedin" target="_blank" href= "https://www.linkedin.com/in/yusufyalim/">
-          <img src="/icons/linkedin.svg" alt="Linkedin Icon">
-        </a>
+        <a target="_blank" href="https://www.linkedin.com/in/yusufyalim/">linkedin.com/yusufyalim</a>
       </li>
     </ul>
   </main>
