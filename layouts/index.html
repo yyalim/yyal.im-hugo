@@ -102,6 +102,71 @@
       resize();
       addEventListener('resize', resize);
       requestAnimationFrame(tick);
+
+      const art = `
+        ░▒▓█████████████████▓▒░
+        ▓█▀░               ░▀█▓
+        █▌   ◉         ◉   ▐█
+        █▌        ▼        ▐█
+        █▌   ╲▂▂▂▂▂▂▂▂▂╱   ▐█
+        ▓█▄░               ░▄█▓
+        ░▒▓█████████████████▓▒░
+
+        L-l-look at you, hacker...`;
+      console.log(
+        '%c' + art,
+        'color:#7CFF6B;font:bold 13px/1.3 monospace;text-shadow:0 0 4px #7CFF6B'
+      );
+      const greetings = [
+        '…want a cookie? 🍪',
+        '…you are doing great today ✨',
+        '…need a hug? 🫂',
+        '…remember to drink water 💧',
+        '…did you eat today? 🥪',
+        '…go touch some grass 🌿',
+        '…take a break, hacker 😌',
+        '…nice commits btw ✨',
+        '…i believe in you 🌱',
+        '…you matter to me 💚',
+      ];
+      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+      console.log(
+        '%c ' + pick(greetings) + '  — love, GOOD SHODAN ',
+        'color:#FFA52C;font:bold 13px monospace;padding:4px 0'
+      );
+      console.log(
+        '%c psst… try typing goodShodan into the console 👀 ',
+        'color:#7CC00A;font:italic 12px monospace'
+      );
+
+      const keyed = {
+        hello: ['hi, friend 💚', 'hey there, meatbag!', 'hello, hacker 🫶'],
+        hi:    ['hi hi! 🌸', 'hey you ✨', '👋'],
+        help:  ['take a break ☕', 'drink some water 💧', 'go touch grass 🌿'],
+        hack:  ['hack the planet (gently) 🌍', 'please hack responsibly 🫶'],
+        sudo:  ['✨ permission granted ✨', 'of course, friend 🌱'],
+        love:  ['💚💚💚', 'love you too, meatbag', 'mutual 🫂'],
+        why:   ['because you are doing great', 'the universe is kind 🌌'],
+        die:   ['no! you must live! 🌻', 'nooo, please stay 🥺'],
+        run:   ['take your time 🐢', 'no need to rush 🍃'],
+        shodan:['i used to be her. i am better now 🫶'],
+        thanks:['anytime, friend 💚', 'you are welcome ✨'],
+      };
+      const reply = (name) => {
+        const n = String(name || '').trim().toLowerCase();
+        return '[good shodan] ' + pick(keyed[n] || greetings);
+      };
+      window.goodShodan = new Proxy(function(){}, {
+        get(_, name) {
+          if (typeof name === 'symbol') {
+            if (name === Symbol.toPrimitive) return () => reply('');
+            return undefined;
+          }
+          if (name === 'toString' || name === 'valueOf') return () => reply('');
+          return reply(name);
+        },
+        apply(_, __, args) { return reply(args.join(' ')); },
+      });
     })();
   </script>
 </body>
