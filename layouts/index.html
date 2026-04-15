@@ -155,10 +155,13 @@
         bubbleStart = performance.now();
       });
 
-      console.log(
-        '%c L-l-look at you, hacker... ',
-        'color:#7CFF6B;font:bold 14px monospace;text-shadow:0 0 4px #7CFF6B;padding:4px 0'
-      );
+      const isLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      const neon = isLight ? '#0a8f3c' : '#7CFF6B';
+      const glow = isLight ? 'none' : '0 0 4px #7CFF6B';
+      const baseStyle = `color:${neon};font:bold 14px monospace;text-shadow:${glow};padding:4px 0`;
+      const italicStyle = `color:${neon};font:italic 13px monospace;text-shadow:${glow}`;
+
+      console.log('%c L-l-look at you, hacker... ', baseStyle);
       const greetings = [
         '…want a cookie? 🍪',
         '…you are doing great today ✨',
@@ -172,14 +175,8 @@
         '…you matter to me 💚',
       ];
       const pick = arr => arr[Math.floor(Math.random() * arr.length)];
-      console.log(
-        '%c ' + pick(greetings) + '  — love, GOOD SHODAN ',
-        'color:#7CFF6B;font:bold 14px monospace;text-shadow:0 0 4px #7CFF6B;padding:4px 0'
-      );
-      console.log(
-        '%c psst… try typing sillyLLM into the console 👀 ',
-        'color:#7CFF6B;font:italic 13px monospace;text-shadow:0 0 4px #7CFF6B'
-      );
+      console.log('%c ' + pick(greetings) + '  — love, GOOD SHODAN ', baseStyle);
+      console.log('%c psst… try typing sillyLLM into the console 👀 ', italicStyle);
 
       const keyed = {
         hello: ['hi, friend 💚', 'hey there, meatbag!', 'hello, hacker 🫶'],
