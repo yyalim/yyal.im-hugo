@@ -32,7 +32,6 @@
       <span class="name">Yusuf Yalım, </span>
       a software engineer.
     </h1>
-    <canvas id="invader" class="invader" aria-hidden="true"></canvas>
     <ul class="social-links">
       <li>
         <a target="_blank" href="https://www.github.com/yyalim">github.com/yyalim</a>
@@ -41,6 +40,7 @@
         <a target="_blank" href="https://www.linkedin.com/in/yusufyalim/">linkedin.com/yusufyalim</a>
       </li>
     </ul>
+    <canvas id="invader" class="invader" aria-hidden="true"></canvas>
   </main>
   <script>
     (() => {
@@ -116,7 +116,7 @@
           }
         }
       }
-      let bubbleText = '', bubbleStart = -Infinity;
+      let bubbleText = '', bubbleStart = -Infinity, bubbleColor = '#FFA52C';
       const BUBBLE_HOLD = 1400, BUBBLE_FADE = 300;
       function drawBubble(t, py) {
         const elapsed = t - bubbleStart;
@@ -127,7 +127,7 @@
         else if (elapsed > BUBBLE_FADE + BUBBLE_HOLD) alpha = 1 - (elapsed - BUBBLE_FADE - BUBBLE_HOLD) / BUBBLE_FADE;
         ctx.save();
         ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
-        ctx.fillStyle = '#FFA52C';
+        ctx.fillStyle = bubbleColor;
         ctx.font = bubbleFont;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'alphabetic';
@@ -150,8 +150,10 @@
       addEventListener('resize', resize);
       requestAnimationFrame(tick);
 
+      const BUBBLE_COLORS = ['#FFA52C','#F77A9C','#7CC00A','#009FE3','#7A5BA1','#FCE000','#EE6F00','#C41E1E'];
       canvas.addEventListener('click', () => {
         bubbleText = lines[Math.floor(Math.random() * lines.length)];
+        bubbleColor = BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)];
         bubbleStart = performance.now();
       });
 
