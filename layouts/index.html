@@ -69,38 +69,18 @@
         '..X.....X..',
         '.X.......X.',
       ];
-      const lines = [
-        'ouch!',
-        'hey!',
-        'pew pew!',
-        'boop',
-        'that tickles',
-        'stop that!',
-        'bzzrk',
-        '...ow',
-        'ACK!',
-        'rude.',
-        'gentle, meatbag',
-        'blorp',
-        'i come in peace',
-        '(◕︵◕)',
-      ];
-      let scale, sprW, sprH, cssW, cssH, textY, sprYBase, bubbleFont, frame = 0, lastStep = 0;
+      let scale, sprW, sprH, cssW, cssH, sprYBase, frame = 0, lastStep = 0;
+      let colorMode = 'rows';
+      let stripeColors = COLORS.slice();
       function resize() {
         const dpr = devicePixelRatio || 1;
         const avail = Math.min(440, canvas.parentElement.clientWidth);
         scale = Math.max(3, Math.floor(avail / 40));
         sprW = COLS * scale;
         sprH = ROWS * scale;
-        bubbleFont = `italic ${scale * 1.8}px monospace`;
-        ctx.font = bubbleFont;
-        let maxText = 0;
-        for (const line of lines) maxText = Math.max(maxText, ctx.measureText(line).width);
-        cssW = Math.max(sprW + scale * 6, Math.ceil(maxText) + scale * 2);
-        const textBand = scale * 4; // room above for speech
-        sprYBase = textBand + scale; // sprite top, leaving text band above
-        cssH = sprYBase + sprH + scale; // bob headroom below
-        textY = textBand - scale * 0.5;
+        cssW = sprW + scale * 6;
+        sprYBase = scale;
+        cssH = sprYBase + sprH + scale;
         canvas.width = cssW * dpr;
         canvas.height = cssH * dpr;
         canvas.style.width = cssW + 'px';
@@ -110,29 +90,13 @@
       }
       function draw(pattern, px, py) {
         for (let r = 0; r < ROWS; r++) {
-          ctx.fillStyle = COLORS[r];
           for (let c = 0; c < COLS; c++) {
-            if (pattern[r][c] === 'X') ctx.fillRect(px + c * scale, py + r * scale, scale, scale);
+            if (pattern[r][c] !== 'X') continue;
+            const idx = colorMode === 'diagonal' ? (r + c) % stripeColors.length : r;
+            ctx.fillStyle = stripeColors[idx];
+            ctx.fillRect(px + c * scale, py + r * scale, scale, scale);
           }
         }
-      }
-      let bubbleText = '', bubbleStart = -Infinity, bubbleColor = '#FFA52C';
-      const BUBBLE_HOLD = 1400, BUBBLE_FADE = 300;
-      function drawBubble(t, py) {
-        const elapsed = t - bubbleStart;
-        const total = BUBBLE_HOLD + BUBBLE_FADE * 2;
-        if (elapsed < 0 || elapsed > total || !bubbleText) return;
-        let alpha = 1;
-        if (elapsed < BUBBLE_FADE) alpha = elapsed / BUBBLE_FADE;
-        else if (elapsed > BUBBLE_FADE + BUBBLE_HOLD) alpha = 1 - (elapsed - BUBBLE_FADE - BUBBLE_HOLD) / BUBBLE_FADE;
-        ctx.save();
-        ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
-        ctx.fillStyle = bubbleColor;
-        ctx.font = bubbleFont;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'alphabetic';
-        ctx.fillText(bubbleText, cssW / 2, py);
-        ctx.restore();
       }
       function tick(t) {
         if (t - lastStep > 550) { frame ^= 1; lastStep = t; }
@@ -142,7 +106,6 @@
         const bob = Math.sin(t / 600) * (scale * 0.6);
         const px = Math.round(centerX + sway);
         const py = Math.round(sprYBase + bob);
-        drawBubble(t, textY + bob);
         draw(frame ? B : A, px, py);
         requestAnimationFrame(tick);
       }
@@ -150,11 +113,10 @@
       addEventListener('resize', resize);
       requestAnimationFrame(tick);
 
-      const BUBBLE_COLORS = ['#FFA52C','#F77A9C','#7CC00A','#009FE3','#7A5BA1','#FCE000','#EE6F00','#C41E1E'];
       canvas.addEventListener('click', () => {
-        bubbleText = lines[Math.floor(Math.random() * lines.length)];
-        bubbleColor = BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)];
-        bubbleStart = performance.now();
+        colorMode = Math.random() < 0.5 ? 'rows' : 'diagonal';
+        const count = colorMode === 'diagonal' ? ROWS + COLS - 1 : ROWS;
+        stripeColors = Array.from({ length: count }, () => COLORS[Math.floor(Math.random() * COLORS.length)]);
       });
 
       const isLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
