@@ -70,8 +70,6 @@
         '.X.......X.',
       ];
       let scale, sprW, sprH, cssW, cssH, sprYBase, frame = 0, lastStep = 0;
-      let colorMode = 'rows';
-      let stripeColors = COLORS.slice();
       function resize() {
         const dpr = devicePixelRatio || 1;
         const avail = Math.min(440, canvas.parentElement.clientWidth);
@@ -92,8 +90,7 @@
         for (let r = 0; r < ROWS; r++) {
           for (let c = 0; c < COLS; c++) {
             if (pattern[r][c] !== 'X') continue;
-            const idx = colorMode === 'diagonal' ? (r + c) % stripeColors.length : r;
-            ctx.fillStyle = stripeColors[idx];
+            ctx.fillStyle = COLORS[r % COLORS.length];
             ctx.fillRect(px + c * scale, py + r * scale, scale, scale);
           }
         }
@@ -112,12 +109,6 @@
       resize();
       addEventListener('resize', resize);
       requestAnimationFrame(tick);
-
-      canvas.addEventListener('click', () => {
-        colorMode = Math.random() < 0.5 ? 'rows' : 'diagonal';
-        const count = colorMode === 'diagonal' ? ROWS + COLS - 1 : ROWS;
-        stripeColors = Array.from({ length: count }, () => COLORS[Math.floor(Math.random() * COLORS.length)]);
-      });
 
       const isLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
       const neon = isLight ? '#0a8f3c' : '#7CFF6B';
