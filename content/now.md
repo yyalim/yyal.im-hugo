@@ -12,7 +12,7 @@ These days I'm splitting my time between Berlin and Frankfurt Am Main.
 
 ## Work
 
-I'm a fullstack engineer at [Bloomwell](https://bloomwell.de/).
+I'm a fullstack engineer at [Bloomwell](https://bloomwell.de/), working on the systems that move users through the platform — onboarding, payments, and tracking. Day-to-day I'm bouncing between Node.js, Go, React, and PostgreSQL.
 
 ## Building
 
