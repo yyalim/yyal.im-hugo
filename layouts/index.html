@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Yusuf Yalim's personal website." />
   <title>Yusuf Yalım</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta property="og:description" content="Yusuf Yalim's personal website.">
+  <meta property="og:url" content="{{ .Site.BaseURL }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ .Site.Title }}">
+  <meta name="twitter:description" content="Yusuf Yalim's personal website.">
   {{ $styles := resources.Get "scss/styles.scss" | toCSS | minify }}
   <style>{{ $styles.Content | safeCSS }}</style>
   <script>
