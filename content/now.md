@@ -8,25 +8,30 @@ _What I'd tell a friend I hadn't seen in a year. Inspired by [nownownow.com](htt
 
 ## Where
 
-Splitting time between Berlin and Frankfurt Am Main.
+These days I'm splitting my time between Berlin and Frankfurt Am Main.
 
 ## Work
 
-Fullstack engineer at [Bloomwell](https://bloomwell.de/).
+I'm a fullstack engineer at [Bloomwell](https://bloomwell.de/).
 
 ## Building
 
-- [Dawnlog](https://github.com/yyalim/dawnlog) — automating agile rituals so teams can spend less time in ceremonies and more time shipping.
+On the side, I've got a few things going:
+
+- [Dawnlog](https://github.com/yyalim/dawnlog) — trying to automate agile rituals so teams can spend less time in ceremonies and more time shipping.
 - An AI tour guide agent for solo travellers.
+- A social platform for logging what you're learning — sharing the goal, the progress, and whatever you end up building with the new skill.
+
+And one I keep daydreaming about: an epic game following a band of ancient warriors who set out searching for their inner power, find each other along the way, and pass it on to fight evil.
 
 ## Reading
 
-I gravitate toward sci-fi and popular science. Some of my favorite authors are Carl Sagan, Roger Penrose, Arthur C. Clarke, and Tolkien. The full shelf lives on my [Goodreads](https://www.goodreads.com/fusuyz).
+Still on a sci-fi and popular science kick. Carl Sagan, Roger Penrose, Arthur C. Clarke, and Tolkien come up the most as always. The full shelf lives on my [Goodreads](https://www.goodreads.com/fusuyz).
 
 ## Learning
 
-Picking up new software engineering techniques every day. Right now I'm focused on coding with AI agents, Go, Kubernetes, and Deutsch.
+Picking up something new most days. Right now that's coding with AI agents, Go, Kubernetes, and Deutsch.
 
 ## Listening
 
-My taste runs wide, but I lean into progressive rock and metal — Gojira, Mastodon, Camel, King Crimson. That said, you might just as easily catch me playing Dua Lipa. Scrobbles on [Last.fm](https://www.last.fm/user/alienaut), and I collect records over on [Discogs](https://www.discogs.com/user/yyalim).
+My taste runs wide, but I keep coming back to progressive rock and metal — Gojira, Mastodon, Camel, King Crimson. That said, you might just as easily catch me playing Dua Lipa. Scrobbles live on [Last.fm](https://www.last.fm/user/alienaut), and I collect records over on [Discogs](https://www.discogs.com/user/yyalim).
