@@ -1,63 +1,27 @@
+{{ define "main" }}
+  <h1 class="introduction">
+    <span class="name">Yusuf Yalım, </span>
+    a software engineer.
+  </h1>
+  <p class="bio">
+    <a href="/now/">Now</a> at Bloomwell. <a href="/previously/">Previously</a> at ING, Flink, Conny, and Accenture. Shipping software by day, creating art by night.
+  </p>
+  <div class="page-footer">
+    <ul class="social-links">
+      <li class="primary">
+        <a href="mailto:hi@yyal.im">hi@yyal.im</a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/yyalim">github</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/yusufyalim/">linkedin</a>
+      </li>
+    </ul>
+    <canvas id="invader" class="invader" aria-hidden="true"></canvas>
+  </div>
+{{ end }}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; base-uri 'self'; form-action 'self'; object-src 'none'">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yusuf Yalim's personal website." />
-  <title>Yusuf Yalım</title>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ .Site.Title }}">
-  <meta property="og:description" content="Yusuf Yalim's personal website.">
-  <meta property="og:url" content="{{ .Site.BaseURL }}">
-  <meta property="og:site_name" content="{{ .Site.Title }}">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{{ .Site.Title }}">
-  <meta name="twitter:description" content="Yusuf Yalim's personal website.">
-  {{ $styles := resources.Get "scss/styles.scss" | toCSS | minify }}
-  <style>{{ $styles.Content | safeCSS }}</style>
-  <script>
-    const loadGTM = () => {
-      const s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TDV3N3LET5';
-      document.head.appendChild(s);
-    };
-    ['pointerdown','keydown','scroll','touchstart'].forEach(evt =>
-      addEventListener(evt, loadGTM, { once: true, passive: true })
-    );
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-TDV3N3LET5', {
-      page_path: window.location.pathname,
-    });
-  </script>
-</head>
-<body>
-  <main class="page-container">
-    <h1 class="introduction">
-      <span class="name">Yusuf Yalım, </span>
-      a software engineer.
-    </h1>
-    <p class="bio">
-      <a href="/now/">Now</a> at Bloomwell. <a href="/previously/">Previously</a> at ING, Flink, Conny, and Accenture. Shipping software by day, creating art by night.
-    </p>
-    <div class="page-footer">
-      <ul class="social-links">
-        <li class="primary">
-          <a href="mailto:hi@yyal.im">hi@yyal.im</a>
-        </li>
-        <li>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/yyalim">github</a>
-          <span class="sep" aria-hidden="true">·</span>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/yusufyalim/">linkedin</a>
-        </li>
-      </ul>
-      <canvas id="invader" class="invader" aria-hidden="true"></canvas>
-    </div>
-  </main>
+{{ define "scripts" }}
   <script>
     (() => {
       const canvas = document.getElementById('invader');
@@ -184,5 +148,4 @@
       });
     })();
   </script>
-</body>
-</html>
+{{ end }}

@@ -1,2 +1,5 @@
 baseURL = "https://yyal.im/"
 title = "Yusuf Yalım"
+
+[params]
+description = "Yusuf Yalim's personal website."
