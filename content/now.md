@@ -1,10 +1,10 @@
 ---
 title: "Now"
 description: "What Yusuf Yalım is focused on right now."
-lastmod: 2026-05-06
+lastmod: 2026-05-09
 ---
 
-_What I'd tell a friend I hadn't seen in a year. Inspired by [nownownow.com](https://nownownow.com/about)._
+_What I'd tell a friend I hadn't seen in a year. Inspired by [nownownow.com](https://nownownow.com/about) — also [listed there](https://nownownow.com/p/ygNf)._
 
 ## Where
 
