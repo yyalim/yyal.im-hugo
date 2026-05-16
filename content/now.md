@@ -20,9 +20,6 @@ On the side, I've got a few things going:
 
 - [Dawnlog](https://github.com/yyalim/dawnlog) — trying to automate agile rituals so teams can spend less time in ceremonies and more time shipping.
 - An AI tour guide agent for solo travellers.
-- A social platform for logging what you're learning — sharing the goal, the progress, and whatever you end up building with the new skill.
-
-And one I keep daydreaming about: an epic game following a band of ancient warriors who set out searching for their inner power, find each other along the way, and pass it on to fight evil.
 
 ## Reading
 
